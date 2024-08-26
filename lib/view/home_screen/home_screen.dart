@@ -1,31 +1,85 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app_sample/dummy_db.dart';
+import 'package:quiz_app_sample/view/home_screen/widgets/category_buildercard.dart';
+import 'package:svg_flutter/svg_flutter.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-        child: Column(
-         
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical:10 ),
-              child: Container(
-                height: 200,
-                width: 350,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("What is the most popular sport throughout the world?",
-                  style: TextStyle(color: Colors.white,fontSize: 20),),
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Hi, John",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
                 ),
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(20)
+              ),
+              Text(
+                "Let's make this day productive",
+                style: TextStyle(
+                  color: Colors.grey.shade400,
+                  fontSize: 15,
+                ),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(
+                "assets/images/person2.jpeg",
+              ),
+            ),
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Let's Play",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+            SizedBox(height: 20),
+            Expanded(
+              child: GridView.builder(
+                itemCount: DummyDb.category.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 16,
+                  crossAxisSpacing: 16,
+                  childAspectRatio: 1.5
+             
+                ),
+                itemBuilder: (context, index) => CategoryBuilder(
+                  category: DummyDb.category[index]["category"],
+                  qnumber: DummyDb.category[index]["Questions"],
+                  url: DummyDb.category[index]["url"]
+
                 ),
               ),
             ),
@@ -35,3 +89,4 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
