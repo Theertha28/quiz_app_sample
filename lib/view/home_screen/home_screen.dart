@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: const EdgeInsets.all(10),
             child: CircleAvatar(
-              backgroundImage: NetworkImage(
+              backgroundImage: AssetImage(
                 "assets/images/person2.jpeg",
               ),
             ),
@@ -67,19 +67,22 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: 20),
             Expanded(
               child: GridView.builder(
-                itemCount: DummyDb.category.length,
+                itemCount: DummyDb.quiz.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 16,
                   crossAxisSpacing: 16,
-                  childAspectRatio: 1.5
+                  childAspectRatio: 1.5,
+                  mainAxisExtent: 200
              
                 ),
                 itemBuilder: (context, index) => CategoryBuilder(
-                  category: DummyDb.category[index]["category"],
-                  qnumber: DummyDb.category[index]["Questions"],
-                  url: DummyDb.category[index]["url"]
-
+                  category: DummyDb.quiz[index]["category"],
+                  qnumber: DummyDb.quiz[index]["Questions"],
+                  url: DummyDb.quiz[index]["url"],
+                  index: index,
+                  
+                   
                 ),
               ),
             ),

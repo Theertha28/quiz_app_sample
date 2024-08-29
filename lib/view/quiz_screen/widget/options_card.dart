@@ -28,7 +28,7 @@ class OptionsCard extends StatelessWidget {
         child: Row( 
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(DummyDb.quiz[questionIndex]["option"][optionIndex],
+            Text(DummyDb.quiz[questionIndex][0]["option"][optionIndex],
             style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
             CircleAvatar(
               radius: 10,

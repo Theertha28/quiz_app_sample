@@ -53,7 +53,9 @@ class _ResultScreenState extends State<ResultScreen> {
                 InkWell(
                   onTap: (){
                     Navigator.push(context,
-                     MaterialPageRoute(builder: (context)=>QuizScreen()));
+                     MaterialPageRoute(builder: (context)=>QuizScreen(
+                      // questionList: [DummyDb()],
+                     )));
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
