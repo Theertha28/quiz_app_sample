@@ -11,7 +11,7 @@ class OptionsCard extends StatelessWidget {
   });
 
   final int questionIndex;
-   final int optionIndex;
+   final String optionIndex;
    final void Function()? onOptionsTap;
    final Color borderColor;
 
@@ -28,7 +28,7 @@ class OptionsCard extends StatelessWidget {
         child: Row( 
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(DummyDb.quiz[questionIndex][0]["option"][optionIndex],
+            Text(optionIndex,
             style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
             CircleAvatar(
               radius: 10,

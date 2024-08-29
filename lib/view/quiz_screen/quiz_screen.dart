@@ -5,7 +5,8 @@ import 'package:quiz_app_sample/view/result_screen/result_screen.dart';
 import 'package:lottie/lottie.dart';
 
 class QuizScreen extends StatefulWidget {
-  const QuizScreen({super.key,required this.QuestionList,});
+  const QuizScreen({super.key,
+  required this.QuestionList,});
     final List QuestionList;
 
   @override
@@ -17,69 +18,90 @@ class _QuizScreenState extends State<QuizScreen> {
   int questionIndex=0;
   int? selectedAnswerIndex;
   int rightAnsCount=0;
-
-  // @override
-  // void initState() {
-  //   widget.QuestionList.shuffle();
-  //   super.initState();
-  // }
+    int wrongAnswerCount = 0;
+    @override
+    void initState() {
+    Future.delayed(Duration(seconds: 3)).then(
+      (value) {
+        
+      },
+    );
+  }
+  
 
   @override
   Widget build(BuildContext context) {
    
     return Scaffold(
       backgroundColor: Colors.black,
-     appBar: AppBar(
-      backgroundColor: Colors.black,
-      actions: [Text("${questionIndex+1}/${widget.QuestionList.length}",
-      style: TextStyle(color: Colors.blue),)],
-     ),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-            child: Column(
-             
-              children: [
-                //question section
-                _buildQuestionSection(),
+     appBar: _buildAppBarSection(),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          child: ListView(
+           
+            children: [
+              //question section
+              _buildQuestionSection(),
+              SizedBox(height: 20,),
+              //option section
+              Column(                 
+                children: List.generate(
+                  4,
+                  (index)=> OptionsCard(
+                    borderColor:_getColor(index),
+                    questionIndex: questionIndex,
+                    optionIndex:widget.QuestionList[questionIndex]["option"][index],
+                 onOptionsTap: () {
+            if (selectedAnswerIndex == null) {
+              setState(() {
+                selectedAnswerIndex = index;
+                if (selectedAnswerIndex ==
+                    widget.QuestionList[questionIndex]["answer"]) {
+                  rightAnsCount++;
+                } else {
+                  wrongAnswerCount++;
+                }
+              });
+            }
+          },
+                    ),
+                
+                ),),
                 SizedBox(height: 20,),
-                //option section
-                Column(                 
-                  children: List.generate(
-                    4,
-                    (index)=> OptionsCard(
-                      borderColor:_getColor(index),
-                      questionIndex: questionIndex,
-                      optionIndex:widget.QuestionList[questionIndex]["option"][index],
-                      onOptionsTap: () {
-                        if(selectedAnswerIndex==null) {
-                         selectedAnswerIndex=index;
-                         //to increment the count of right answer
-                         if(
-                          selectedAnswerIndex==
-                         widget.QuestionList[index]["answer"] 
-                         ){
-                          rightAnsCount++;
-                        print("right answer: ${rightAnsCount}");
-                         } 
-                        setState(() {
-                             
-                        });
-                        print(index);}
-                      },),
-                  
-                  ),),
-                  SizedBox(height: 20,),
-                 
-              ],
-            ),
+               
+            ],
           ),
         ),
       ),
       bottomNavigationBar:
       selectedAnswerIndex!= null? _buildNextButton(context):null,
     );
+  }
+
+  AppBar _buildAppBarSection() {
+    return AppBar(
+    backgroundColor: Colors.black,
+    centerTitle: true,
+    title: Row(
+        children: <Widget>[
+          SizedBox(
+            width: 220,
+            child: LinearProgressIndicator(
+              minHeight: 7,
+              backgroundColor: Colors.grey,
+              value: (questionIndex + 1) / widget.QuestionList.length,
+              color: Colors.yellow.shade900,
+              borderRadius: BorderRadius.circular(13),
+            ),
+          ),
+        ],
+      ),
+    actions: [Text("${questionIndex+1}/${widget.QuestionList.length}",
+    style: TextStyle(color: Colors.blue),),
+    SizedBox(width: 15,)
+    ],
+   );
   }
 
   Padding _buildNextButton(BuildContext context) {
@@ -98,7 +120,9 @@ class _QuizScreenState extends State<QuizScreen> {
             Navigator.push(context,
              MaterialPageRoute(
               builder: (context)=>ResultScreen(
+                wrongAnsCount: wrongAnswerCount,
                 rightAnsCount: rightAnsCount,
+                qstn: widget.QuestionList,
               )
               ));
      

@@ -61,7 +61,7 @@ class DummyDb{
  //chemistry
   {
     "category":"Chemistry",
-    "Questions":"20 questions",
+    "Questions":"13 questions",
     "url":"assets/images/chemistry-svgrepo-com.svg",
     "Qlist":[
         {
@@ -129,51 +129,7 @@ class DummyDb{
     "option": ["Water", "Hydrogen Peroxide", "Oxygen", "Nitrogen"],
     "answer": 0
   },
-  {
-    "question": "What is the atomic number of carbon?",
-    "option": ["6", "8", "12", "14"],
-    "answer": 0
-  },
-  {
-    "question": "What type of bond involves the sharing of electron pairs between atoms?",
-    "option": ["Ionic Bond", "Covalent Bond", "Metallic Bond", "Hydrogen Bond"],
-    "answer": 1
-  },
-  {
-    "question": "What is the chemical formula for sulfuric acid?",
-    "option": ["H2SO4", "HCl", "HNO3", "CH3COOH"],
-    "answer": 0
-  },
-  {
-    "question": "Which gas is known as laughing gas?",
-    "option": ["Nitrous Oxide", "Oxygen", "Carbon Dioxide", "Helium"],
-    "answer": 0
-  },
-  {
-    "question": "What is the name of the process by which plants convert carbon dioxide into oxygen?",
-    "option": ["Respiration", "Photosynthesis", "Fermentation", "Combustion"],
-    "answer": 1
-  },
-  {
-    "question": "What is the chemical symbol for Iron?",
-    "option": ["Fe", "Ir", "I", "In"],
-    "answer": 0
-  },
-  {
-    "question": "Which of the following is an alkali metal?",
-    "option": ["Magnesium", "Calcium", "Sodium", "Iron"],
-    "answer": 2
-  },
-  {
-    "question": "What is the chemical formula for ammonia?",
-    "option": ["NH3", "NH4", "N2H4", "N2O"],
-    "answer": 0
-  },
-  {
-    "question": "What is the name of the chemical reaction that absorbs heat?",
-    "option": ["Exothermic", "Endothermic", "Combustion", "Decomposition"],
-    "answer": 1
-  }
+
 
     ]
   },

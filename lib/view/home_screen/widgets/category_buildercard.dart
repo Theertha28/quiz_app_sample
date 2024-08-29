@@ -7,12 +7,12 @@ class CategoryBuilder extends StatelessWidget {
   const CategoryBuilder({
     super.key, 
     required this.category,
-     required this.qnumber,
+     required this.Questions,
      required this.url, 
      this.onGridTap,
   });
   final String category;
-  final String qnumber;
+  final String Questions;
   final String url;
    final void Function()? onGridTap;
 
@@ -42,7 +42,7 @@ class CategoryBuilder extends StatelessWidget {
               ),
               SizedBox(height: 8,),
                Text(
-                qnumber,
+                Questions,
                 style: TextStyle(color: Colors.grey, fontSize: 13),
               ),
             ],
