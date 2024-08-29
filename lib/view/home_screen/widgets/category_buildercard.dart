@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app_sample/dummy_db.dart';
 import 'package:quiz_app_sample/view/quiz_screen/quiz_screen.dart';
 import 'package:svg_flutter/svg_flutter.dart';
 
@@ -7,18 +8,18 @@ class CategoryBuilder extends StatelessWidget {
     super.key, 
     required this.category,
      required this.qnumber,
-     required this.url,
+     required this.url, 
+     this.onGridTap,
   });
   final String category;
   final String qnumber;
   final String url;
+   final void Function()? onGridTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>QuizScreen()));
-      },
+      onTap: onGridTap,
       child: Stack(
         fit: StackFit.expand,
         children: [
@@ -49,8 +50,8 @@ class CategoryBuilder extends StatelessWidget {
         ),
         Positioned(
           top: 0,
-          right:90,
-          child:  SvgPicture.asset(url,height: 70,
+          right:50,
+          child:  SvgPicture.asset(url,height: 90,
           ),)
        
         ]                ),

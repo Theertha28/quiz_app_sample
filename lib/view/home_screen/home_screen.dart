@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app_sample/dummy_db.dart';
 import 'package:quiz_app_sample/view/home_screen/widgets/category_buildercard.dart';
+import 'package:quiz_app_sample/view/quiz_screen/quiz_screen.dart';
 import 'package:svg_flutter/svg_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -80,7 +81,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   category: DummyDb.quiz[index]["category"],
                   qnumber: DummyDb.quiz[index]["Questions"],
                   url: DummyDb.quiz[index]["url"],
-                  index: index,
+                 onGridTap: (){
+                  Navigator.push(
+                    context,
+                   MaterialPageRoute(
+                    builder: (context)=>QuizScreen(
+                      QuestionList: DummyDb.quiz[index]["Qlist"])));
+                 },
                   
                    
                 ),

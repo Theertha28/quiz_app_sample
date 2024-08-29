@@ -51,12 +51,12 @@ class _ResultScreenState extends State<ResultScreen> {
                 
                 SizedBox(height: 20,),
                 InkWell(
-                  onTap: (){
-                    Navigator.push(context,
-                     MaterialPageRoute(builder: (context)=>QuizScreen(
-                      // questionList: [DummyDb()],
-                     )));
-                  },
+                  // onTap: (){
+                  //   Navigator.push(context,
+                  //    MaterialPageRoute(builder: (context)=>QuizScreen(
+                  //     // questionList: [DummyDb()],
+                  //    )));
+                  // },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

@@ -5,7 +5,8 @@ import 'package:quiz_app_sample/view/result_screen/result_screen.dart';
 import 'package:lottie/lottie.dart';
 
 class QuizScreen extends StatefulWidget {
-  const QuizScreen({super.key});
+  const QuizScreen({super.key,required this.QuestionList,});
+    final List QuestionList;
 
   @override
   State<QuizScreen> createState() => _QuizScreenState();
@@ -16,6 +17,13 @@ class _QuizScreenState extends State<QuizScreen> {
   int questionIndex=0;
   int? selectedAnswerIndex;
   int rightAnsCount=0;
+
+  // @override
+  // void initState() {
+  //   widget.QuestionList.shuffle();
+  //   super.initState();
+  // }
+
   @override
   Widget build(BuildContext context) {
    
@@ -23,7 +31,7 @@ class _QuizScreenState extends State<QuizScreen> {
       backgroundColor: Colors.black,
      appBar: AppBar(
       backgroundColor: Colors.black,
-      actions: [Text("${questionIndex+1}/${DummyDb.quiz.length}",
+      actions: [Text("${questionIndex+1}/${widget.QuestionList.length}",
       style: TextStyle(color: Colors.blue),)],
      ),
       body: SingleChildScrollView(
@@ -43,14 +51,14 @@ class _QuizScreenState extends State<QuizScreen> {
                     (index)=> OptionsCard(
                       borderColor:_getColor(index),
                       questionIndex: questionIndex,
-                      optionIndex:index,
+                      optionIndex:widget.QuestionList[questionIndex]["option"][index],
                       onOptionsTap: () {
                         if(selectedAnswerIndex==null) {
                          selectedAnswerIndex=index;
                          //to increment the count of right answer
                          if(
                           selectedAnswerIndex==
-                          DummyDb.quiz[questionIndex]["answer"] 
+                         widget.QuestionList[index]["answer"] 
                          ){
                           rightAnsCount++;
                         print("right answer: ${rightAnsCount}");
@@ -81,7 +89,7 @@ class _QuizScreenState extends State<QuizScreen> {
         onTap: () {
           selectedAnswerIndex=null;
           if(
-            questionIndex<DummyDb.quiz.length-1
+            questionIndex<widget.QuestionList.length-1
           ){
             setState(() {
             questionIndex++;
@@ -123,7 +131,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       height: 200,
                       
                       child: SingleChildScrollView(
-                        child: Text(DummyDb.quiz[questionIndex]["question"],
+                        child: Text(widget.QuestionList[questionIndex]["question"],
                         textAlign: TextAlign.justify,
                         style: TextStyle(color: Colors.white,fontSize: 20),),
                       ),
@@ -132,7 +140,7 @@ class _QuizScreenState extends State<QuizScreen> {
                         borderRadius: BorderRadius.circular(20)
                       ),
                     ),
-                    selectedAnswerIndex==DummyDb.quiz[questionIndex]["answer"]
+                    selectedAnswerIndex==widget.QuestionList[questionIndex]["answer"]
                     ?Lottie.asset('assets/animations/Animation - 1724599992433.json',
                     height: 200,alignment: Alignment.center)
                     :SizedBox()
@@ -144,12 +152,12 @@ class _QuizScreenState extends State<QuizScreen> {
 
 Color _getColor(int index){
   if(selectedAnswerIndex!=null){
-      if(index== DummyDb.quiz[questionIndex]["answer"]){
+      if(index== widget.QuestionList[questionIndex]["answer"]){
     return Colors.green;
   }
-  if(selectedAnswerIndex==DummyDb.quiz[questionIndex]["answer"] && selectedAnswerIndex==index){
+  if(selectedAnswerIndex==widget.QuestionList[questionIndex]["answer"] && selectedAnswerIndex==index){
     return Colors.green;
-  }else if(selectedAnswerIndex!=DummyDb.quiz[questionIndex]["answer"] && selectedAnswerIndex==index){
+  }else if(selectedAnswerIndex!=widget.QuestionList[questionIndex]["answer"] && selectedAnswerIndex==index){
    return Colors.red;
   }
   }
