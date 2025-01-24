@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:quiz_app_sample/view/home_screen/home_screen.dart';
 import 'package:quiz_app_sample/view/quiz_screen/quiz_screen.dart';
 
@@ -27,10 +28,23 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Center(child:Text("QUIZ APP",
-      style: TextStyle(
-        fontWeight: FontWeight.bold,fontSize: 30,
-        color: Colors.white),)),
+      body: Center(
+          child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "QuizHub",
+            style: TextStyle(
+                fontWeight: FontWeight.bold, fontSize: 30, color: Colors.white),
+          ),
+          FaIcon(
+            FontAwesomeIcons.thinkPeaks,
+            color: Colors.amber,
+            size: 30,
+          ),
+        ],
+      )),
     );
   }
 }

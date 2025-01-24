@@ -136,7 +136,7 @@ class DummyDb{
   //physics
  {
     "category":"Physics",
-    "Questions":"15 questions",
+    "Questions":"10 questions",
     "url":"assets/images/physics-svgrepo-com.svg",
     "Qlist":[
     
